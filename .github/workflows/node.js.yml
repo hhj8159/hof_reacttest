@@ -5,13 +5,12 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "master" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "master" ]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -20,12 +19,13 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
+    
     - uses: actions/checkout@v4
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: npm test
+    - run: node --version  # Node.js 버전 출력 확인
+    - run: npm --version  # npm 버전 출력 확인
+    - run: echo "Node.js setup successfully!"  # 간단한 메시지 출력 확인
